@@ -1,0 +1,71 @@
+<style>
+  table {
+      font-family: monospace;
+      background: #000;
+  }
+  table td {
+      background: #fff;
+      padding: 10px;
+  }
+  thead tr td {
+      background: lightblue;
+  }
+  tbody tr td.record {
+      background: lightpink;
+  }
+  tbody tr td {
+      background: lightyellow;
+  }
+</style>
+
+
+<table id="product-table">
+  <thead>
+    <tr>
+      <td>UPC CODE</td>
+      <td>PRODUCT NAME</td>
+    </tr>
+  </thead>
+  <tbody>  
+  </tbody>
+</table>
+
+<template id="product-row">
+  <tr>
+    <td class="record"></td>
+    <td></td>
+  </tr>
+</template>
+
+<script>
+  if ('content' in document.createElement('template')) {
+      let productRowTemplate = document.querySelector('#product-row')
+      let tbody              = document.querySelector('tbody')
+      let productRow1        = document.importNode(productRowTemplate.content, true)
+      let productRow2        = document.importNode(productRowTemplate.content, true)
+      let productRow3        = document.importNode(productRowTemplate.content, true)
+
+      let productRow1TableData = productRow1.querySelectorAll('td')
+
+      productRow1TableData[0].textContent = '123'
+      productRow1TableData[1].textContent = 'Ramen'
+
+      tbody.appendChild(productRow1)
+
+      let productRow2TableData = productRow2.querySelectorAll('td')
+
+      productRow2TableData[0].textContent = '456'
+      productRow2TableData[1].textContent = 'Sriracha'
+
+      tbody.appendChild(productRow2)
+
+      let productRow3TableData = productRow3.querySelectorAll('td')
+
+      productRow3TableData[0].textContent = '789'
+      productRow3TableData[1].textContent = 'Sweet Tea'
+
+      tbody.appendChild(productRow3)
+  } else {
+      alert('<template> tag not supported in this browser :(')
+  }
+</script>
